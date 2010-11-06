@@ -1,0 +1,17 @@
+{include file="header.html"}
+        <style type="text/css">
+        #message { border-top:1px solid #B0D3EE; }
+        .message {  }
+        .warning { font-weight:bold; color:red; }
+        </style>
+        <div class="agreement2">
+            <div class="accede2" id="message">
+                <div class="message">{$lang.integrate_successed}</div>
+            </div>
+        </div>
+        <div class="btn">
+            <input type="button" class="button" value="{$lang.frontend}" onclick="window.location.href='{$site_url}'" />
+            <input type="button" class="button" value="{$lang.backend}" onclick="window.location.href='{$site_url}/admin'" />
+        </div>
+
+{include file="footer.html"}

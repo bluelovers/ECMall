@@ -1,0 +1,129 @@
+{include file=header.html}
+<script type="text/javascript">
+$(function(){
+    {if $error.key}
+    $('#{$error.key}').focus();
+    {/if}
+    {if $error.uc_ip}
+    $("[ectype='uc_ip']").show();
+    {else}
+    $("[ectype='uc_ip']").hide();
+    {/if}
+    $('#exists_user').click(function(){
+        //$('#user_name').val($('#user_name').attr('orig'));
+        $('#password_confirm').hide();
+        $('#email').hide();
+    });
+    $('#new_user').click(function(){
+        //$('#user_name').val('');
+        $('#password_confirm').show();
+        $('#email').show();
+    });
+    var post_back = '{$admin_user}';
+    var admin_user = post_back ? post_back : 'exists_user';
+    $('#' + admin_user).click();
+    {if $recheck}
+    $('#uc_info_title,#uc_info_table').hide();
+    {/if}
+});
+</script>
+{if $missing_items}
+<ul class="messages">
+    <li>{$lang.have_missing_item}:&nbsp;{foreach from=$missing_items item=item}[{$lang.$item}]&nbsp;&nbsp;{/foreach}</li>
+</ul>
+{/if}
+{if $error}
+<ul class="messages">
+    <li>{$error.content}</li>
+</ul>
+{/if}
+<div class="main_form">
+    <h3 id="uc_info_title">{$lang.ucenter_info}</h3>
+    <table id="uc_info_table">
+        <tr id="uc_connect">
+            <th>{$lang.uc_connect}:</th>
+            <td><p>
+                    <label>
+                    <input name="uc_connect" type="radio" value="mysql" {if $data.uc_connect eq "mysql"}checked="checked"{/if} />
+                    MySQL</label>
+                    <label>
+                    <input name="uc_connect" type="radio" value="" {if $data.uc_connect eq ""}checked="checked"{/if} />
+                    HTTP</label>
+                </p></td>
+            <td class="color92a"></td>
+        </tr>
+        <tr id="uc_api">
+            <th>{$lang.uc_api}:</th>
+            <td><input name="uc_api" type="text" class="input_text" id="uc_api" value="{$data.uc_api}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr ectype="uc_ip" id="uc_ip">
+            <th>{$lang.uc_ip}:</th>
+            <td><input name="uc_ip" type="text" class="input_text" id="uc_ip" value="{$data.uc_ip}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr id="uc_password">
+            <th>{$lang.uc_password}:</th>
+            <td><input name="uc_password" type="password" class="input_text" id="uc_password" value="{$data.uc_password}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr id="app_name">
+            <th>{$lang.app_name}:</th>
+            <td><input name="app_name" type="text" class="input_text" id="app_name" value="{$data.app_name}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr id="app_url">
+            <th>{$lang.app_url}:</th>
+            <td><input name="app_url" type="text" class="input_text" id="app_url" value="{$data.app_url}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+    </table>
+    <h3>{$lang.mall_admin_info}</h3>
+    <table>
+        <tr>
+            <th></th>
+            <td><input type="radio" name="admin_user" value="exists_user" id="exists_user" /><label for="exists_user">{$lang.exists_user}</label>
+                &nbsp;&nbsp;
+                <input type="radio" name="admin_user" value="new_user" id="new_user" /><label for="new_user">{$lang.new_user}</label></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr>
+            <th>{$lang.user_name}:</th>
+            <td><input name="user_name" type="text" class="input_text" id="user_name" value="{$data.user_name}" orig="{$data.user_name}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr id="email">
+            <th>{$lang.email}:</th>
+            <td><input name="email" type="text" class="input_text" id="email" value="{$data.email}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr>
+            <th>{$lang.password}:</th>
+            <td><input name="password" type="password" class="input_text" id="password" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr id="password_confirm">
+            <th>{$lang.password_confirm}:</th>
+            <td><input name="password_confirm" type="password" class="input_text" id="password_confirm" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+        <tr>
+            <th></th>
+            <td colspan="2"><input type="checkbox" name="accept" value="1" id="accept" onclick="if(this.checked){if(!confirm('{$lang.attension_content}')){this.checked=false;}}" />
+                <label for="accept" style="color:red; font-weight:bold;">&nbsp;{$lang.attension_content}</label></td>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <td>
+            <input type="hidden" name="recheck" value="{$recheck}" />
+            <!--{if $uc_conf}-->
+                <!--{foreach from=$uc_conf key=_k item=_v}-->
+            <input type="hidden" name="uc_conf[{$_k}]" value="{$_v}" />
+                <!--{/foreach}-->
+            <!--{/if}-->
+            <input name="submit" type="submit" class="button mtb20" id="submit_button" value="{$lang.finish}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+    </table>
+</div>
+{include file=footer.html}

@@ -1,0 +1,29 @@
+{include file=header.html}
+<script type="text/javascript">
+$(function(){
+    $('#submit_button').click(function(){
+        window.location.href = $('.systems:checked').attr('uri');
+    });
+});
+</script>
+<div class="main_form">
+    <h3 id="uc_info_title">{$lang.select_systems}</h3>
+    <table id="uc_info_table">
+        <tr id="uc_connect">
+            <th>{$lang.available_systems}:</th>
+            <td><p>
+                    <label>
+                    <input class="systems" name="ucenter" uri="uc/" type="radio" value="" checked="checked" />
+                    UCenter</label>
+                </p></td>
+            <td class="color92a"></td>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <td>
+            <input name="submit" type="button" class="button mtb20" id="submit_button" value="{$lang.next_step}" /></td>
+            <td class="color92a">&nbsp;</td>
+        </tr>
+    </table>
+</div>
+{include file=footer.html}

@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+        <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+        <meta name="author" content="ecmall.shopex.cn" />
+        <meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
+        <title>ECMall</title>
+        <link href="{res file='style/global.css'}" rel="stylesheet" type="text/css" />
+        <script src="{lib file='jquery.js'}" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+        //<![CDATA[
+        function init_button()
+        {
+            $('#go_admin_button').click(function(){
+                window.location.href = '{$site_url}/admin';
+            });
+            $('#go_index_button').click(function(){
+                window.location.href = '{$site_url}';
+            });
+        }
+        function change_step_status(step, status)
+        {
+            $('#' + step).get(0).className = status;
+        }
+        function running_message(msg)
+        {
+            $('#running_message').html(msg).show();
+        }
+        function hide_running_message()
+        {
+            $('#running_message').hide();
+        }
+        function step_failed(step, msg)
+        {
+            change_step_status(step, 'failed');
+            hide_running_message();
+            show_message(msg);
+            window.onbeforeunload = null;
+        }
+        function upgrade_done(msg)
+        {
+            hide_running_message();
+            show_message(msg);
+            window.onbeforeunload = null;
+        }
+        function show_message(msg)
+        {
+            $('#message_container').html(msg).show();
+            init_button();
+        }
+        function start_upgrade(form)
+        {
+            form.style.display='none';
+            change_step_status('{$steps.0}', 'running');
+            running_message('{$lang.start_upgrade}');
+            window.onbeforeunload = function(){
+                return '{$lang.stop_upgrading_warning}';
+            };
+        }
+        function go_upgrade()
+        {
+            var readed = $('#readed_attention').get(0).checked;
+            if (readed)
+            {
+                $('#attention').hide();
+                $('#upgrade_form').show();
+            }
+            else
+            {
+                alert('{$lang.read_attention_first}');
+            }
+        }
+        //]]>
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="header">
+                <span id="logo">
+                    <a href="http://ecmall.shopex.cn" target="_blank"><span style="color:#000;">EC</span><span style="color:#EA2F14;">Mall</span></a><span class="app">{$lang.ecmall_upgrader}</span>
+                </span>
+            </div>
+            <div id="container">
+                <div id="attention">
+                    <div class="msg_block">
+                        <h3 class="title">{$lang.attention}</h3>
+                        {$lang.upgrade_attention}
+                    </div>
+                    <div style="margin-top:5px; text-align:center;">
+                        <input type="checkbox" id="readed_attention" /><label for="readed_attention">&nbsp;{$lang.understand_attention}</label>
+                    </div>
+                    <div class="button_list">
+                        <input type="button" onclick="window.close();" value="{$lang.upgrade_later}" />
+                        <input type="button" onclick="go_upgrade();" value="{$lang.upgrade_now}" />
+                    </div>
+                </div>
+                <div id="upgrade_form">
+                    <div class="upgrade_title">{$lang.upgrade_title}&nbsp;:&nbsp;{$target_version}</div>
+                    <div class="upgrade_progress">
+                        <h2>{$lang.upgrade_progress}</h2>
+                        <ul id="steps_list">
+                        {foreach from=$steps item=s}
+                            <li id="{$s}"><span>&nbsp;</span>{$lang.$s}</li>
+                        {/foreach}
+                        </ul>
+                    </div>
+                    <div id="running_message">
+                    </div>
+                    <div id="message_container">
+                    </div>
+                    <div class="button_list">
+                        <form action="index.php" target="upgrade_iframe" onsubmit="start_upgrade(this);">
+                            <input type="hidden" name="upgrading" />
+                            <input type="submit" value="{$lang.start_upgrade}" />
+                        </form>
+                    </div>
+                    <iframe name="upgrade_iframe" id="upgrade_iframe" frameborder="0" width="100%" height="50px" src="about:blank"></iframe>
+                </div>
+            </div>
+            <div id="footer">
+                Copyright &copy; 2003-2009 <a href="http://www.shopex.cn" target="_blank"><span style="color:#1960BF;font-weight:bold;">Shop</span><span style="font-weight:bold;color:#EA2F14;">Ex</span></a> Inc. All rights reserved.
+            </div>
+        </div>
+    </body>
+</html>

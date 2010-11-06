@@ -1,0 +1,29 @@
+@charset "utf-8";
+* { margin:0px; padding:0px; }
+body { text-align:center; font-size:13px; background:#eee; color:#000; }
+a { text-decoration:none; color:#000; }
+#wrapper { width:770px; margin:auto; border:#ccc 8px solid; margin-top:10px; background:#fff; }
+#header { margin:10px; text-align:left; border-bottom:#eee 2px solid; }
+#container { padding:0px 100px; }
+#footer { margin:10px; padding:5px; color:#333; border-top:#eee 2px solid; }
+#logo { font-size:30px; font-weight:bold; margin-left:10px; }
+#logo .app { color:#333; font-size:16px; margin-left:5px; }
+#attention { text-align:left; padding:5px 0px; }
+#upgrade_form { text-align:left; display:none; }
+#running_message { width:210px; margin:10px auto; padding-top:20px; padding-left:5px; color:#333; font-style:italic; background:transparent url(./images/loading.gif) no-repeat top left; display:none; }
+#message_container { margin:10px auto; padding:5px; border-top:#eee 1px solid; display:none; }
+.msg_block { border-bottom:#eee 1px dotted; padding-bottom:5px; }
+.msg_block h3.title { margin:8px 0px; border-bottom:#eee 1px dotted; padding-bottom:5px; }
+.button_list { text-align:center; margin-top:10px; }
+.button_list input { margin:0px 5px; }
+.upgrade_title { font-size:18px; text-align:center; padding:5px; }
+.upgrade_progress { margin:10px auto; text-align:center; }
+.upgrade_progress h2 { color:#333; }
+.upgrade_progress ul { list-style:none; margin:8px 0px; padding:5px; border-top:#eee 1px solid; }
+.upgrade_progress li { margin-top:5px; color:#aaa; }
+.upgrade_progress li.running { font-weight:bold; color:#000; }
+.upgrade_progress li.running span { background:transparent url(./images/running.gif) no-repeat top left; padding:0px 8px; }
+.upgrade_progress li.failed { font-weight:bold; color:#E40F0F; text-decoration:underline; }
+.upgrade_progress li.failed span { background:transparent url(./images/failed.gif) no-repeat top left; padding:0px 8px; }
+.upgrade_progress li.done { font-weight:bold; color:#428642; }
+.upgrade_progress li.done span { background:transparent url(./images/success.gif) no-repeat top left; padding:0px 8px; }

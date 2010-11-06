@@ -1,0 +1,27 @@
+<?php
+return array(
+    'consulting' => '咨詢管理',
+    'asker' => '咨詢人',
+    'time' => '咨詢時間',
+    'delete' => '刪除',
+    'goods' => '商品名稱',
+    'guest' => '游客',
+    'content' => '咨詢內容',
+    'drop_failed' => '刪除失敗。',
+    'drop_successful' => '刪除成功。',
+    'type' => '類型',
+    'ask' => '咨詢',
+    'reply' => '回復',
+    'drop_confirm' => '您確定要刪除這些商品咨詢嗎？',
+    'drop_reason' => '刪除原因',
+    'to_qa_list' => '返回咨詢列表',
+    'drop_goodsqa_notice' => '商品咨詢刪除通知',
+    'admin_drop_your_goodsqa' => '管理員刪除了您的商品咨詢︰%s %s %s %s',
+    'reason_is' => '原因是︰%s',
+    'content_is' => '內容為',
+    'item_name' => '咨詢對象',
+    'goods' => '商品',
+    'groupbuy' => '團購',
+    'reply_content' => '店主回復',
+);
+?>
